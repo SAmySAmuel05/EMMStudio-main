@@ -1,22 +1,25 @@
 import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Home, Gift, Image, HelpCircle, Mail } from "lucide-react";
+
+const links = [
+  { label: "Inicio", href: "#hero", icon: Home },
+  { label: "Servicios", href: "#servicios", icon: Gift },
+  { label: "Portfolio", href: "#portfolio", icon: Image },
+  { label: "FAQ", href: "#faq", icon: HelpCircle },
+  { label: "Contacto", href: "#contacto", icon: Mail },
+];
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const links = [
-    { label: "Inicio", href: "#hero" },
-    { label: "Servicios", href: "#servicios" },
-    { label: "Portfolio", href: "#portfolio" },
-    { label: "FAQ", href: "#faq" },
-    { label: "Contacto", href: "#contacto" },
-  ];
+  const closeMenu = () => setIsOpen(false);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-lg border-b border-[#064E3B]/10">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-lg border-b border-[#064E3B]/10">
       <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between h-16">
-        <a href="#hero" className="font-display text-2xl font-bold text-foreground tracking-tight">
+        <a href="#hero" className="font-display text-2xl font-bold text-foreground tracking-tight" onClick={closeMenu}>
           EMM<span className="text-[#064E3B]">Studio</span>
         </a>
 
@@ -38,32 +41,60 @@ const Navbar = () => {
 
         {/* Mobile toggle */}
         <button
-          className="md:hidden text-foreground"
+          className="md:hidden p-2 -m-2 text-foreground rounded-lg hover:bg-[#064E3B]/5 transition-colors"
           onClick={() => setIsOpen(!isOpen)}
-          aria-label="Toggle menu"
+          aria-label={isOpen ? "Cerrar menú" : "Abrir menú"}
+          aria-expanded={isOpen}
         >
-          {isOpen ? <X size={24} /> : <Menu size={24} />}
+          {isOpen ? <X size={26} /> : <Menu size={26} />}
         </button>
       </div>
 
-      {/* Mobile menu */}
-      {isOpen && (
-        <div className="md:hidden bg-background border-b border-border px-6 pb-6 space-y-4">
-          {links.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              onClick={() => setIsOpen(false)}
-              className="block text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+      {/* Mobile menu - panel deslizante */}
+      <AnimatePresence>
+        {isOpen && (
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className="fixed inset-0 top-16 bg-black/20 z-40 md:hidden"
+              onClick={closeMenu}
+              aria-hidden
+            />
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.25, ease: "easeOut" }}
+              className="md:hidden bg-white border-b border-[#064E3B]/10 shadow-lg overflow-hidden z-50"
             >
-              {link.label}
-            </a>
-          ))}
-          <Button variant="hero" size="sm" className="w-full" asChild>
-            <a href="#contacto">Cotizar</a>
-          </Button>
-        </div>
-      )}
+              <div className="px-4 py-4 space-y-1">
+                {links.map((link) => {
+                  const Icon = link.icon;
+                  return (
+                    <a
+                      key={link.href}
+                      href={link.href}
+                      onClick={closeMenu}
+                      className="flex items-center gap-3 w-full py-4 px-4 rounded-xl text-base font-medium text-foreground hover:bg-[#064E3B]/5 hover:text-[#064E3B] transition-colors"
+                    >
+                      <Icon className="w-5 h-5 text-[#064E3B]/70 shrink-0" />
+                      {link.label}
+                    </a>
+                  );
+                })}
+                <div className="pt-2 pb-1">
+                  <Button variant="hero" size="lg" className="w-full rounded-xl" asChild>
+                    <a href="#contacto" onClick={closeMenu}>Solicitar cotización</a>
+                  </Button>
+                </div>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </nav>
   );
 };

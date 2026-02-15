@@ -24,7 +24,7 @@ const HeroSection = () => {
             transition={{ duration: 0.5 }}
             className="text-sm font-semibold tracking-widest uppercase text-[#064E3B] mb-4"
           >
-            EMM Studio
+            EMMStudio
           </motion.p>
           <motion.h1
             initial={{ opacity: 0, y: 24 }}

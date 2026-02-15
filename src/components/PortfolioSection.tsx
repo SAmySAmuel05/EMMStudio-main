@@ -89,7 +89,7 @@ const PortfolioSection = () => {
                     </div>
                   </div>
                   <div className="h-16 flex items-center justify-center text-muted-foreground/50 text-[10px]">
-                    Invitación digital · EMM Studio
+                    Invitación digital · EMMStudio
                   </div>
                 </motion.div>
               </div>

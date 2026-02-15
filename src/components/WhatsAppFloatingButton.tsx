@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
 
-const WHATSAPP_NUMBER = "5212345678900";
+const WHATSAPP_NUMBER = "525582573307";
 const MESSAGE = encodeURIComponent(
-  "¡Hola EMM Studio! Me interesa recibir información sobre sus servicios digitales."
+  "¡Hola EMMStudio! Me interesa recibir información sobre sus servicios digitales."
 );
 const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${MESSAGE}`;
 
@@ -12,7 +12,7 @@ const WhatsAppFloatingButton = () => {
       href={whatsappUrl}
       target="_blank"
       rel="noopener noreferrer"
-      aria-label="Abrir chat de WhatsApp con EMM Studio"
+      aria-label="Abrir chat de WhatsApp con EMMStudio"
       initial={{ scale: 0, opacity: 0 }}
       animate={{ scale: 1, opacity: 1 }}
       transition={{ delay: 1, type: "spring", stiffness: 200 }}
