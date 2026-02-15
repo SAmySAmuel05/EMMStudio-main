@@ -1,0 +1,146 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 140 20% 99%;
+    --foreground: 160 10% 12%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 160 10% 12%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 160 10% 12%;
+
+    --primary: 164 84% 16%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 145 30% 95%;
+    --secondary-foreground: 152 56% 25%;
+
+    --muted: 140 15% 95%;
+    --muted-foreground: 160 5% 50%;
+
+    --accent: 152 56% 32%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 140 15% 90%;
+    --input: 140 15% 88%;
+    --ring: 152 56% 32%;
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 152 56% 32%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 145 30% 95%;
+    --sidebar-accent-foreground: 152 56% 25%;
+    --sidebar-border: 140 15% 90%;
+    --sidebar-ring: 152 56% 32%;
+
+    /* Custom tokens */
+    --emerald: 164 84% 16%;
+    --emerald-light: 145 40% 92%;
+    --emerald-dark: 164 84% 12%;
+    --emerald-glow: 164 70% 28%;
+    --glass-bg: rgba(255, 255, 255, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.3);
+
+    font-family: 'Inter', sans-serif;
+  }
+
+  .dark {
+    --background: 160 10% 6%;
+    --foreground: 140 20% 96%;
+    --card: 160 10% 8%;
+    --card-foreground: 140 20% 96%;
+    --popover: 160 10% 8%;
+    --popover-foreground: 140 20% 96%;
+    --primary: 152 56% 42%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 152 20% 14%;
+    --secondary-foreground: 140 20% 96%;
+    --muted: 160 10% 14%;
+    --muted-foreground: 140 10% 60%;
+    --accent: 152 56% 42%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 160 10% 16%;
+    --input: 160 10% 16%;
+    --ring: 152 56% 42%;
+    --sidebar-background: 160 10% 8%;
+    --sidebar-foreground: 140 20% 96%;
+    --sidebar-primary: 152 56% 42%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 152 20% 14%;
+    --sidebar-accent-foreground: 140 20% 96%;
+    --sidebar-border: 160 10% 16%;
+    --sidebar-ring: 152 56% 42%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, #064E3B, hsl(164, 70%, 28%));
+  }
+
+  .section-padding {
+    @apply px-6 py-20 md:px-12 lg:px-24 lg:py-28;
+  }
+
+  .glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+  }
+
+  .shimmer {
+    position: relative;
+    overflow: hidden;
+  }
+  .shimmer::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      105deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.25) 45%,
+      rgba(255, 255, 255, 0.4) 50%,
+      rgba(255, 255, 255, 0.25) 55%,
+      transparent 100%
+    );
+    transform: translateX(-100%);
+    animation: shimmer 2.5s ease-in-out infinite;
+  }
+}
+
+@keyframes shimmer {
+  to {
+    transform: translateX(100%);
+  }
+}
