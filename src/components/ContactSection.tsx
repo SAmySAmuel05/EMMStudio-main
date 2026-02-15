@@ -52,7 +52,7 @@ const ContactSection = () => {
   };
 
   return (
-    <section id="contacto" className="section-padding bg-[#f8faf8]">
+    <section id="contacto" className="section-padding scroll-mt-20 bg-[#f8faf8]">
       <div className="max-w-2xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

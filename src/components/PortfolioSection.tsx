@@ -71,7 +71,7 @@ const HorizontalScrollContent = ({ image1, image2 }: { image1: string; image2: s
 
 const PortfolioSection = () => {
   return (
-    <section id="portfolio" className="section-padding bg-white">
+    <section id="portfolio" className="section-padding scroll-mt-20 bg-white">
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
