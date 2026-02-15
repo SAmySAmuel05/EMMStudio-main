@@ -51,7 +51,7 @@ const item = {
 
 const ServicesSection = () => {
   return (
-    <section id="servicios" className="section-padding bg-[#f8faf8]">
+    <section id="servicios" className="section-padding scroll-mt-20 bg-[#f8faf8]">
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
