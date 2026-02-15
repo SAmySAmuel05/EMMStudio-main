@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, type MouseEvent } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Home, Gift, Image, HelpCircle, Mail } from "lucide-react";
@@ -15,11 +15,31 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const closeMenu = () => setIsOpen(false);
+  const handleAnchorClick =
+    (href: string) => (event: MouseEvent<HTMLAnchorElement>) => {
+      event.preventDefault();
+      closeMenu();
+
+      const target = document.querySelector<HTMLElement>(href);
+      if (!target) return;
+
+      const navHeight = 64;
+      const top = target.getBoundingClientRect().top + window.scrollY - navHeight;
+      window.scrollTo({ top: Math.max(top, 0), behavior: "smooth" });
+
+      if (window.location.hash !== href) {
+        window.history.replaceState(null, "", href);
+      }
+    };
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-lg border-b border-[#064E3B]/10">
       <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between h-16">
-        <a href="#hero" className="font-display text-2xl font-bold text-foreground tracking-tight" onClick={closeMenu}>
+        <a
+          href="#hero"
+          className="font-display text-2xl font-bold text-foreground tracking-tight"
+          onClick={handleAnchorClick("#hero")}
+        >
           EMM<span className="text-[#064E3B]">Studio</span>
         </a>
 
@@ -29,13 +49,16 @@ const Navbar = () => {
             <a
               key={link.href}
               href={link.href}
+              onClick={handleAnchorClick(link.href)}
               className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
             >
               {link.label}
             </a>
           ))}
           <Button variant="hero" size="sm" asChild>
-            <a href="#contacto">Cotizar</a>
+            <a href="#contacto" onClick={handleAnchorClick("#contacto")}>
+              Cotizar
+            </a>
           </Button>
         </div>
 
@@ -45,6 +68,7 @@ const Navbar = () => {
           onClick={() => setIsOpen(!isOpen)}
           aria-label={isOpen ? "Cerrar menú" : "Abrir menú"}
           aria-expanded={isOpen}
+          aria-controls="mobile-menu-panel"
         >
           {isOpen ? <X size={26} /> : <Menu size={26} />}
         </button>
@@ -68,7 +92,8 @@ const Navbar = () => {
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.25, ease: "easeOut" }}
-              className="md:hidden bg-white border-b border-[#064E3B]/10 shadow-lg overflow-hidden z-50"
+              id="mobile-menu-panel"
+              className="fixed inset-x-0 top-16 max-h-[calc(100dvh-4rem)] overflow-y-auto md:hidden bg-white border-b border-[#064E3B]/10 shadow-lg z-50"
             >
               <div className="px-4 py-4 space-y-1">
                 {links.map((link) => {
@@ -77,7 +102,7 @@ const Navbar = () => {
                     <a
                       key={link.href}
                       href={link.href}
-                      onClick={closeMenu}
+                      onClick={handleAnchorClick(link.href)}
                       className="flex items-center gap-3 w-full py-4 px-4 rounded-xl text-base font-medium text-foreground hover:bg-[#064E3B]/5 hover:text-[#064E3B] transition-colors"
                     >
                       <Icon className="w-5 h-5 text-[#064E3B]/70 shrink-0" />
@@ -87,7 +112,9 @@ const Navbar = () => {
                 })}
                 <div className="pt-2 pb-1">
                   <Button variant="hero" size="lg" className="w-full rounded-xl" asChild>
-                    <a href="#contacto" onClick={closeMenu}>Solicitar cotización</a>
+                    <a href="#contacto" onClick={handleAnchorClick("#contacto")}>
+                      Solicitar cotización
+                    </a>
                   </Button>
                 </div>
               </div>
