@@ -6,7 +6,7 @@ import { Menu, X, Home, Gift, Image, HelpCircle, Mail } from "lucide-react";
 const links = [
   { label: "Inicio", href: "#hero", icon: Home },
   { label: "Servicios", href: "#servicios", icon: Gift },
-  { label: "Portfolio", href: "#portfolio", icon: Image },
+  { label: "Portafolio", href: "#portfolio", icon: Image },
   { label: "FAQ", href: "#faq", icon: HelpCircle },
   { label: "Contacto", href: "#contacto", icon: Mail },
 ];

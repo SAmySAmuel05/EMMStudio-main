@@ -5,6 +5,8 @@ import portfolio3 from "@/assets/portfolio-3.jpg";
 import portfolio4 from "@/assets/portfolio-4.jpg";
 import portfolio5 from "@/assets/portfolio-5.jpg";
 import portfolio6 from "@/assets/portfolio-6.jpg";
+import invitacionPortada from "@/assets/invitacion-portada.png";
+import invitacionUbicacion from "@/assets/invitacion-ubicacion.png";
 
 const projects = [
   { src: portfolio1, title: "Agenda de Turnos", category: "Gestión de Citas" },
@@ -27,7 +29,7 @@ const PortfolioSection = () => {
           className="text-center mb-10"
         >
           <p className="text-sm font-semibold tracking-widest uppercase text-[#064E3B] mb-3">
-            Portfolio
+            Portafolio
           </p>
           <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground">
             Trabajos recientes
@@ -48,49 +50,29 @@ const PortfolioSection = () => {
               style={{ boxShadow: "0 25px 80px -12px rgba(6, 78, 59, 0.25)" }}
             >
               <div className="absolute top-0 left-1/2 -translate-x-1/2 w-28 h-5 bg-neutral-900 rounded-b-xl z-20" />
-              <div className="w-full h-full bg-gradient-to-b from-[#064E3B]/5 to-white pt-6 overflow-hidden">
+              <div className="w-full h-full pt-6 overflow-hidden relative">
+                {/* Contenedor con scroll animado: dos pantallas */}
                 <motion.div
-                  animate={{ y: [0, -180, 0] }}
-                  transition={{
-                    duration: 8,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                  className="px-4 pt-2 pb-16"
+                  animate={{ y: [0, -500, 0] }}
+                  transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+                  className="flex flex-col"
+                  style={{ minHeight: "200%" }}
                 >
-                  <div className="rounded-xl bg-white shadow-lg border border-[#064E3B]/10 overflow-hidden mb-3">
-                    <div className="h-24 bg-gradient-to-br from-[#064E3B] to-[#053d2e]" />
-                    <div className="p-3">
-                      <p className="font-display text-base font-semibold text-[#064E3B]">
-                        Boda María & Carlos
-                      </p>
-                      <p className="text-[10px] text-muted-foreground mt-0.5">
-                        Sábado 15 de Junio
-                      </p>
-                      <div className="flex gap-1.5 mt-2">
-                        <span className="text-[9px] px-2 py-0.5 rounded-full bg-[#064E3B]/10 text-[#064E3B]">
-                          RSVP
-                        </span>
-                        <span className="text-[9px] px-2 py-0.5 rounded-full bg-[#064E3B]/10 text-[#064E3B]">
-                          Ubicación
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="rounded-xl bg-white shadow-lg border border-[#064E3B]/10 overflow-hidden mb-3">
-                    <div className="h-20 bg-gradient-to-br from-[#064E3B]/80 to-[#064E3B]" />
-                    <div className="p-2.5">
-                      <p className="font-display text-xs font-semibold text-[#064E3B]">
-                        Confirmación de asistencia
-                      </p>
-                      <p className="text-[9px] text-muted-foreground">
-                        Cuenta regresiva: 45 días
-                      </p>
-                    </div>
-                  </div>
-                  <div className="h-16 flex items-center justify-center text-muted-foreground/50 text-[10px]">
-                    Invitación digital · EMMStudio
-                  </div>
+                  {/* ——— PANTALLA 1: Detalles del evento / Ubicación (plantilla 1) ——— */}
+                  <div
+                    className="flex-shrink-0 w-full h-[500px] bg-cover bg-center bg-no-repeat"
+                    style={{ backgroundImage: `url(${invitacionUbicacion})` }}
+                    role="img"
+                    aria-label="Detalles del evento y ubicación Hacienda Los Laureles"
+                  />
+
+                  {/* ——— PANTALLA 2: Portada (Mateo & Valeria, plantilla 2) ——— */}
+                  <div
+                    className="flex-shrink-0 w-full h-[500px] bg-cover bg-center bg-no-repeat"
+                    style={{ backgroundImage: `url(${invitacionPortada})` }}
+                    role="img"
+                    aria-label="Invitación boda Mateo y Valeria"
+                  />
                 </motion.div>
               </div>
             </div>

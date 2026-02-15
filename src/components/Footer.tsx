@@ -1,7 +1,6 @@
-import { Instagram, Mail } from "lucide-react";
+import { Mail } from "lucide-react";
 
 const socials = [
-  { icon: Instagram, href: "https://instagram.com", label: "Instagram" },
   { icon: Mail, href: "mailto:samuel.e.a.r.0506@gmail.com", label: "Email" },
 ];
 
