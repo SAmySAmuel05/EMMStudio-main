@@ -60,9 +60,21 @@ This project is built with:
 - shadcn-ui
 - Tailwind CSS
 
-## How can I deploy this project?
+## Cómo desplegar en GitHub Pages
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+Este proyecto se despliega automáticamente con **GitHub Actions** cuando haces push a la rama `main`.
+
+### Configuración (solo la primera vez)
+
+1. En tu repositorio, ve a **Settings** → **Pages**.
+2. En **Build and deployment**, en **Source** elige **GitHub Actions**.
+3. Guarda. No necesitas elegir rama ni carpeta.
+
+Tras el primer push a `main` (o al subir este workflow), se ejecutará el build y la web quedará publicada en:
+
+**https://SAmySAmuel05.github.io/EMMStudio-main/**
+
+(Usa la barra final `/` en la URL.)
 
 ## Can I connect a custom domain to my Lovable project?
 
